@@ -41,7 +41,7 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                sh 'docker push PiyushWS2024/user-services:latest'
+                sh 'docker push dockers2024/user-services:latest'
             }
         }
 
