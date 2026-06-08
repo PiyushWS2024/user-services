@@ -27,7 +27,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t javaexpress/user-service:latest .'
+                sh 'docker build -t PiyushWS2024/user-services:latest .'
             }
         }
 
