@@ -27,7 +27,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t javaexpress/user-services:latest .'
+                sh 'docker build -t PiyushWS2024/user-services:latest .'
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                sh 'docker push javaexpress/user-services:latest'
+                sh 'docker push PiyushWS2024/user-services:latest'
             }
         }
 
