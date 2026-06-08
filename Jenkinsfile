@@ -6,10 +6,10 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/PiyushWS2024/user-services'
-
+                git branch: 'main', url: 'https://github.com/PiyushWS2024/user-services.git'
             }
         }
 
@@ -21,13 +21,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "mvn package"
+                sh "mvn clean package -DskipTests"
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t PiyushWS2024/user-services:latest .'
+                sh 'docker build -t javaexpress/user-services:latest .'
             }
         }
 
@@ -41,26 +41,16 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                sh 'docker push javaexpress/user-service:latest'
+                sh 'docker push javaexpress/user-services:latest'
             }
         }
 
         stage("Kubernetes Deployment") {
             steps {
                 sh '''
-                    echo "Deleting old deployment (if exists)..."
                     kubectl delete deployment user-service-deployment --ignore-not-found
-
-                    echo "Waiting for cleanup..."
                     sleep 5
-
-                    echo "Applying fresh deployment..."
                     kubectl apply -f user_deployment.yaml
-
-                    echo "Waiting for deployment to stabilize..."
-                    sleep 10
-
-                    echo "Checking rollout status..."
                     kubectl rollout status deployment user-service-deployment
                 '''
             }
