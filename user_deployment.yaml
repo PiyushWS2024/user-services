@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: javaexpress/user-service:latest
+          image: docker2024/user-service:latest
           ports:
           - containerPort: 8085
           env:
