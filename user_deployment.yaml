@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: docker2024/user-service:latest
+          image: dockers2024/user-services:latest
           ports:
           - containerPort: 8085
           env:
